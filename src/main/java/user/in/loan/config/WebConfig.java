@@ -57,7 +57,8 @@ public class WebConfig {
                 List.of(
                         "http://localhost:3000",
                         "https://loan-partners.vercel.app",
-                        "http://uptimerobot.com"
+                        "http://uptimerobot.com",
+                        "https://hack-repo.vercel.app"
 
                 ));
         configuration.setAllowedMethods(List.of("*"));
