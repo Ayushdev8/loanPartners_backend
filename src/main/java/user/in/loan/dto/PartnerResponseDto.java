@@ -13,13 +13,11 @@ public class PartnerResponseDto {
     private String partnerName;
     private String partnerEmail;
     private PartnerType partnerType;
-    private String message;
-//    private String partnerEmail;
-//    private String partnerPhone;
-//    private String state;
-//    private String district;
-//    private Double latitude;
-//    private Double longitude;
-//    private String website;
-//    private String partnerAddress;
+    private String partnerPhone;
+    private String state;
+    private String district;
+    private Double latitude;
+    private Double longitude;
+    private String website;
+    private String partnerAddress;
 }

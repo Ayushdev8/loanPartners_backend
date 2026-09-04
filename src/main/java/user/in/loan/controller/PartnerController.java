@@ -30,4 +30,12 @@ public class PartnerController {
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/get/partners/{schemeId}")
+    public ResponseEntity<List<PartnerResponseDto>> getPartners(@PathVariable String schemeId){
+        System.out.println("get partner");
+        List<PartnerResponseDto> response = partnerService.getAllPartners(schemeId);
+        return ResponseEntity.ok(response);
+
+    }
+
 }

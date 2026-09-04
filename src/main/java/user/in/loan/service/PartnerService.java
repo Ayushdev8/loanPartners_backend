@@ -2,6 +2,7 @@ package user.in.loan.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import user.in.loan.dto.PartnerResponseDto;
 import user.in.loan.dto.PartnerSchemeResponse;
 import user.in.loan.dto.SchemeRequestDto;
 
@@ -29,6 +30,7 @@ public class PartnerService {
         if(partnerAdmin == null){
             throw new RuntimeException("partner Admin not found");
         }
+//        PartnerScheme partner = partnerSchemeRepository.findByPartnerAndSchemeId(partner,request.getSchemeId());
 
         PartnerScheme partnerScheme = PartnerScheme.builder()
                 .partner(partner)
@@ -66,5 +68,34 @@ public class PartnerService {
                     return dto;
                 })
                 .toList();
+    }
+
+    public List<PartnerResponseDto> getAllPartners(String schemeId){
+        List<PartnerScheme> partnerSchemes = partnerSchemeRepository.findBySchemeId(schemeId);
+        if(partnerSchemes.isEmpty()){
+            throw new RuntimeException("For this scheme there is not any partner");
+        }
+
+        return partnerSchemes.stream()
+                .map(partnerScheme -> {
+                    PartnerResponseDto dto = new PartnerResponseDto(
+                            partnerScheme.getPartner().getId(),
+                            partnerScheme.getPartner().getName(),
+                            partnerScheme.getPartner().getEmail(),
+                            partnerScheme.getPartner().getPartnerType(),
+                            partnerScheme.getPartner().getPhone(),
+                            partnerScheme.getPartner().getState(),
+                            partnerScheme.getPartner().getDistrict(),
+                            partnerScheme.getPartner().getLatitude(),
+                            partnerScheme.getPartner().getLongitude(),
+                            partnerScheme.getPartner().getWebsite(),
+                            partnerScheme.getPartner().getAddress()
+
+
+                    );
+                    return dto;
+                })
+                .toList();
+
     }
 }

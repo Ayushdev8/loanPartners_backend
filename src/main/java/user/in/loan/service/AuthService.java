@@ -63,6 +63,17 @@ public class AuthService {
 
         partnerAdminRepository.save(partnerAdmin);
 
-        return new PartnerResponseDto(newPartner.getId(), newPartner.getName(), newPartner.getEmail(), newPartner.getPartnerType(),"you are Successfully registered ");
+        return new PartnerResponseDto(
+                newPartner.getId(),
+                newPartner.getName(),
+                newPartner.getEmail(),
+                newPartner.getPartnerType(),
+                newPartner.getPhone(),
+                newPartner.getState(),
+                newPartner.getDistrict(),
+                newPartner.getLatitude(),
+                newPartner.getLongitude(),
+                newPartner.getWebsite(),
+                newPartner.getAddress());
     }
 }
