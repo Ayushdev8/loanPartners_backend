@@ -30,7 +30,6 @@ public class PartnerService {
         if(partnerAdmin == null){
             throw new RuntimeException("partner Admin not found");
         }
-//        PartnerScheme partner = partnerSchemeRepository.findByPartnerAndSchemeId(partner,request.getSchemeId());
 
         PartnerScheme partnerScheme = PartnerScheme.builder()
                 .partner(partner)
