@@ -55,7 +55,8 @@ public class WebConfig {
 
         configuration.setAllowedOrigins(
                 List.of(
-                        "http://localhost:3000"
+                        "http://localhost:3000",
+                        "https://loan-partners.vercel.app"
 
                 ));
         configuration.setAllowedMethods(List.of("*"));
