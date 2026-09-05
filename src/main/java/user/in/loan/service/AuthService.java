@@ -40,8 +40,6 @@ public class AuthService {
                 .state(request.getState())
                 .district(request.getDistrict())
                 .address(request.getPartnerAddress())
-                .latitude(request.getLatitude())
-                .longitude(request.getLongitude())
                 .email(request.getPartnerEmail())
                 .phone(request.getPartnerPhone())
                 .website(request.getWebsite())
