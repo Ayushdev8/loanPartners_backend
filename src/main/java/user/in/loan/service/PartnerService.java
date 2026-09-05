@@ -88,7 +88,9 @@ public class PartnerService {
                             partnerScheme.getPartner().getLatitude(),
                             partnerScheme.getPartner().getLongitude(),
                             partnerScheme.getPartner().getWebsite(),
-                            partnerScheme.getPartner().getAddress()
+                            partnerScheme.getPartner().getAddress(),
+                            partnerScheme.getPartner().getIsVerified(),
+                            partnerScheme.getPartner().getCreatedAt()
 
 
                     );

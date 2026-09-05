@@ -44,6 +44,7 @@ public class AuthService {
                 .phone(request.getPartnerPhone())
                 .website(request.getWebsite())
                 .createdAt(LocalDateTime.now())
+                .isVerified(true)
                 .build();
 
         String state = request.getState();
@@ -103,6 +104,10 @@ public class AuthService {
                 newPartner.getLatitude(),
                 newPartner.getLongitude(),
                 newPartner.getWebsite(),
-                newPartner.getAddress());
+                newPartner.getAddress(),
+                newPartner.getIsVerified(),
+                newPartner.getCreatedAt()
+        );
+
     }
 }

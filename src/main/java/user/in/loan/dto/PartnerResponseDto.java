@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import user.in.loan.entity.type.PartnerType;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,6 @@ public class PartnerResponseDto {
     private Double longitude;
     private String website;
     private String partnerAddress;
+    private boolean isVerified;
+    private LocalDateTime createdAt;
 }

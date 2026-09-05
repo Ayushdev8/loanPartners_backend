@@ -55,7 +55,7 @@ public class Partner {
         private Boolean npaFlag = false;
 
         @Column(name = "is_verified")
-        private Boolean isVerified = false;
+        private Boolean isVerified = true;
 
         @Column(name = "created_at", updatable = false)
         private LocalDateTime createdAt;
