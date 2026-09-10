@@ -38,4 +38,15 @@ public class PartnerController {
 
     }
 
+    @GetMapping("/get-partners")
+    public ResponseEntity<List<PartnerResponseDto>> getAllPartners(){
+        List<PartnerResponseDto> response = partnerService.getPartners();
+        return ResponseEntity.ok(response);
+
+    }
+    @GetMapping("/health")
+        public ResponseEntity<String> health(){
+        return ResponseEntity.ok("ok");
+        }
+
 }

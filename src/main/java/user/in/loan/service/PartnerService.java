@@ -99,4 +99,32 @@ public class PartnerService {
                 .toList();
 
     }
+
+    public List<PartnerResponseDto> getPartners(){
+        List<Partner> partners = partnerRepository.findAll();
+        if(partners.isEmpty()){
+            throw new RuntimeException(" no partners found");
+
+        }
+        return partners.stream()
+                .map(partner ->{
+                    PartnerResponseDto dto = new PartnerResponseDto(
+                            partner.getId(),
+                            partner.getName(),
+                            partner.getEmail(),
+                            partner.getPartnerType(),
+                            partner.getPhone(),
+                            partner.getState(),
+                            partner.getDistrict(),
+                            partner.getLatitude(),
+                            partner.getLongitude(),
+                            partner.getWebsite(),
+                            partner.getAddress(),
+                            partner.getIsVerified(),
+                            partner.getCreatedAt()
+                    );
+                            return dto;
+                })
+                .toList();
+    }
 }
