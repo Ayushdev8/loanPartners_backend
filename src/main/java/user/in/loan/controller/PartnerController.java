@@ -3,10 +3,7 @@ package user.in.loan.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import user.in.loan.dto.PartnerSchemeResponse;
-import user.in.loan.dto.PartnerSignupRequestDto;
-import user.in.loan.dto.PartnerResponseDto;
-import user.in.loan.dto.SchemeRequestDto;
+import user.in.loan.dto.*;
 import user.in.loan.service.PartnerService;
 
 import java.util.List;
@@ -44,6 +41,20 @@ public class PartnerController {
         return ResponseEntity.ok(response);
 
     }
+    @PostMapping("/addApplication")
+    public ResponseEntity<String> addApplication(@RequestBody ApplicationRequestDto request){
+        System.out.println("add application");
+        String response = partnerService.addApplications(request);
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("get-applications/{partnerId}")
+    public ResponseEntity<List<ApplicationResponseDto>> getAllApplications(@PathVariable Long partnerId){
+        System.out.println("get applications");
+        List<ApplicationResponseDto> response = partnerService.getApplications(partnerId);
+        return ResponseEntity.ok(response);
+    }
+
     @GetMapping("/health")
         public ResponseEntity<String> health(){
         return ResponseEntity.ok("ok");

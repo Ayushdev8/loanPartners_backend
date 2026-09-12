@@ -67,5 +67,8 @@ public class Partner {
         private List<PartnerAdmin> admins;
         @OneToMany(mappedBy = "partner", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<PartnerScheme> partnerSchemes;
+
+        @OneToMany(mappedBy = "partner",cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Application> applications;
 }
 

@@ -2,13 +2,14 @@ package user.in.loan.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import user.in.loan.dto.PartnerResponseDto;
-import user.in.loan.dto.PartnerSchemeResponse;
-import user.in.loan.dto.SchemeRequestDto;
+import user.in.loan.dto.*;
 
+import user.in.loan.entity.Application;
 import user.in.loan.entity.Partner;
 import user.in.loan.entity.PartnerAdmin;
 import user.in.loan.entity.PartnerScheme;
+import user.in.loan.entity.type.ApplicationStatus;
+import user.in.loan.repository.ApplicationRepository;
 import user.in.loan.repository.PartnerAdminRepository;
 import user.in.loan.repository.PartnerRepository;
 import user.in.loan.repository.PartnerSchemeRepository;
@@ -22,6 +23,7 @@ public class PartnerService {
     private final PartnerRepository partnerRepository;
     private final PartnerAdminRepository partnerAdminRepository;
     private final PartnerSchemeRepository partnerSchemeRepository;
+    private final ApplicationRepository applicationRepository;
     public String addScheme(SchemeRequestDto request,Long partnerId){
         Partner partner = partnerRepository.findById(partnerId).orElseThrow(
                 ()->new RuntimeException("partner not found")
@@ -127,4 +129,49 @@ public class PartnerService {
                 })
                 .toList();
     }
+
+    public String addApplications(ApplicationRequestDto request){
+        Partner partner = partnerRepository.findById(request.getPartnerId()).orElseThrow(
+                ()->new RuntimeException("organization not found ")
+        );
+        Application application = Application.builder()
+                .applicantId(request.getApplicantId())
+                .applicantName(request.getApplicantName())
+                .schemeId(request.getSchemeId())
+                .partner(partner)
+                .matchedReason(request.getMatchedReason())
+                .status(ApplicationStatus.APPLIED)
+                .createdAt(LocalDateTime.now())
+                .build();
+
+        applicationRepository.save(application);
+        return "Application added successfully";
+    }
+
+    public List<ApplicationResponseDto> getApplications(Long partnerId){
+        Partner partner = partnerRepository.findById(partnerId).orElseThrow(
+                ()->new RuntimeException("organization not found ")
+        );
+
+        List<Application> applications = applicationRepository.findByPartnerId(partner.getId());
+        if(applications.isEmpty()){
+            throw new RuntimeException("applications not generated yet");
+        }
+
+        return  applications.stream()
+                .map(application -> {
+                    ApplicationResponseDto dto = new ApplicationResponseDto(
+                            application.getApplicantId(),
+                            application.getApplicantName(),
+                            application.getSchemeId(),
+                            application.getMatchedReason(),
+                            application.getStatus(),
+                            application.getCreatedAt()
+
+                    );
+                        return dto;
+                })
+                .toList();
+    }
+
 }
